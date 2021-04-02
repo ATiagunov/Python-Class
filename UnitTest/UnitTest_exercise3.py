@@ -1,12 +1,10 @@
 import unittest
-import os,shutil
+import os
+import shutil
 
 
 def new_directory(path):
-	try:
-		os.makedirs(path)
-	except FileExistsError:
-		pass
+	os.makedirs(path, exist_ok=True)
 	os.chdir(path)
 	with open("sonnet.txt", "w") as file:
 		file.write("From fairest creatures we desire increase")

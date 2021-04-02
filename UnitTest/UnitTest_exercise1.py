@@ -2,9 +2,8 @@ import unittest
 import numpy as np
 
 
-def root(x):
-	if x > 0:
-		return 2**0.5
+def positive(x):
+	return x > 0
 
 
 def array(x):
@@ -22,8 +21,8 @@ def subtract(a, b):
 
 class TestNumberMethods(unittest.TestCase):
 	def tests(self):
-		self.assertTrue(root(2))
-		self.assertFalse(root(-2))
+		self.assertTrue(positive(2))
+		self.assertFalse(positive(-2))
 		self.assertIn(5, array(10))
 		self.assertNotIn(10, array(10))
 		self.assertGreater(subtract(8, 2), 4)
