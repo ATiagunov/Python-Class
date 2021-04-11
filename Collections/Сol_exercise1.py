@@ -11,6 +11,3 @@ with open('stage3_test.csv') as csv_in:
     letter_cnt = c.Counter(words)
     print(f'Двадцать самых частых слов: {letter_cnt.most_common()[:20]}')
     print(f'Двадцать самых редких слов: {letter_cnt.most_common()[:-21:-1]}')
-
-
-

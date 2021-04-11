@@ -1,13 +1,13 @@
+import collections as c
 import json
 
 with open('RomeoAndJuliet.json') as f, open("result.json", 'w') as res:
     data = json.load(f)
+    d = c.defaultdict(list)
     for acts in data['acts']:
         for scenes in acts['scenes']:
-            characters = []
             for actions in scenes['action']:
-                if (actions['character']) not in characters:
-                    characters.append(actions['character'])
-            res.write(json.dumps(characters) + '\n')
-
-
+                k = actions['character']
+                v = actions['says']
+                d[k].append(v)
+    json.dump(d, res)
