@@ -3,7 +3,7 @@ import json
 
 counts = {}
 
-with open('../Collections/RomeoAndJuliet.json') as f:
+with open('RomeoAndJuliet.json') as f:
     data = json.load(f)
 for acts in data['acts']:
     for scenes in acts['scenes']:
