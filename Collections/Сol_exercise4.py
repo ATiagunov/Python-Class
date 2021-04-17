@@ -13,9 +13,9 @@ with open('stage3_test.csv') as csv_in, open("result.csv", 'w', newline='') as o
         od = c.OrderedDict(d.items())
     od = c.OrderedDict(sorted(list(od.items()), key=lambda t: t[4][1]))
     print(list(od))
-    #Все, это все... Уже много часов не могу решить. В некоторых примерах OrderedDict принимает на вход csv.reader,
-    #но здесь много словарей, поэтому я все собираю в один через default, из которого получаю ordered.
-    #Значения price лежат в [4][1], но почему не работает sorted не понимаю.
+    #В некоторых примерах OrderedDict принимает на вход csv.reader,
+    #я собираю все в один через default, из которого получаю ordered.
+    #Значения price определенно лежат в [4][1], но почему не работает sorted не понимаю.
 
 
 
