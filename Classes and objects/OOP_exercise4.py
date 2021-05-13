@@ -15,9 +15,8 @@ class Student:
             print(f"{self.name} едет на станцию {ticket.station}")
 
 
-ticket = ticket()
-jack = Student('Саша', 10)
-tina = Student("Маша", 20)
-jack.ride(ticket)
-tina.ride(ticket)
+s = Student('Саша', 10)
+m = Student("Маша", 20)
+s.ride(ticket)
+m.ride(ticket)
 

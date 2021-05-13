@@ -19,7 +19,7 @@ class State:
 
 
 human_1 = Human('Ivan', 'free')
-state_1 = State('Putinland')
+state_1 = State('Putin_land')
 human_1.stat_info()
 state_1.info()
 state_1.bust(human_1)
