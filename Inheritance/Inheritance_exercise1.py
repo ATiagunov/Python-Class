@@ -1,19 +1,22 @@
 class Table:
-    def __init__(self,l,w,h):
+    def __init__(self, l, w, h):
         self.long = l
         self.width = w
         self.height = h
 
     def outing(self):
         print(self.long, self.width, round(self.height, 1))
+
+
 class Kitchen(Table):
-    def howplaces(self,n):
+    def howplaces(self, n):
         if n < 2:
-            print ("It is not kitchen table")
+            print("It is not kitchen table")
         else:
             self.places = n
     def outplases(self):
-        print (self.places)
+        print(self.places)
+
 
 class Carpenter(Table):
     def lengthen(self, m):
@@ -21,6 +24,7 @@ class Carpenter(Table):
 
     def raise_height(self, c):
         self.height += c
+
 
 t = Carpenter(1,3,0.7)
 t.outing()

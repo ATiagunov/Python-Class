@@ -1,5 +1,6 @@
 class Figure:
     color = 'white'
+
     def paint(self, col):
         self.color = col
 
@@ -25,6 +26,7 @@ class Square(Figure):
 
     def outing(self):
         print(f'{self.name}: length - {self.long}, width - {self.width}, color - {self.color}')
+
 
 f1 = Oval(10, 6)
 f1.outing()

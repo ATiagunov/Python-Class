@@ -2,6 +2,7 @@ class Director:
     def __init__(self, n):
         self.position = 'Director'
         self.name = n
+
     def info(self):
         print(self.position, self.name)
 
@@ -10,6 +11,7 @@ class Executive:
     def __init__(self, n):
         self.position = 'Executive'
         self.name = n
+
     def info(self, Director):
         print(f'{self.position} {self.name} is supervised by {Director.position} {Director.name}')
 
