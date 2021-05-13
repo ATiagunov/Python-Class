@@ -26,11 +26,11 @@ class Square(Figure):
     def outing(self):
         print(f'{self.name}: length - {self.long}, width - {self.width}, color - {self.color}')
 
-f1 = Oval(10,6)
+f1 = Oval(10, 6)
 f1.outing()
 f1.paint('yellow')
 f1.outing()
-f2 = Square(10,10)
+f2 = Square(10, 10)
 f2.outing()
 f2.paint('red')
 f2.outing()
