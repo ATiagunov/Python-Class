@@ -14,6 +14,7 @@ class Kitchen(Table):
             print("It is not kitchen table")
         else:
             self.places = n
+
     def outplases(self):
         print(self.places)
 

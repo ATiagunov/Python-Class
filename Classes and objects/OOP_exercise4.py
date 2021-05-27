@@ -1,4 +1,4 @@
-class ticket:
+class Ticket:
     cost = 19
     station = "Центр"
 
@@ -17,6 +17,6 @@ class Student:
 
 s = Student('Саша', 10)
 m = Student("Маша", 20)
-s.ride(ticket)
-m.ride(ticket)
+s.ride(Ticket)
+m.ride(Ticket)
 
