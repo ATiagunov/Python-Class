@@ -14,8 +14,8 @@ class State:
     def info(self):
         print(f'born in {self.name}')
 
-    def bust(self, Human):
-        Human.stat = "busted"
+    def bust(self, obj):
+        obj.stat = "busted"
 
 
 human_1 = Human('Ivan', 'free')
