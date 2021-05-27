@@ -1,8 +1,9 @@
 class BankAccount:
-    name = 'Bill'
-    account_id = 12345
-    __balance = 20000
-    __password = 'ABC'
+    def __init__(self):
+        self.name = 'Bill'
+        self.account_id = 12345
+        self.__balance = 20000
+        self.__password = 'ABC'
 
     def change_balance(self, pswrd, new_balance_value):
         if self.__password == pswrd:

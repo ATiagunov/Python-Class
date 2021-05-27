@@ -1,13 +1,13 @@
 import collections as c
 import csv
 
-with open('stage3_test.csv') as csv_in:
-    words = list()
+with open('/home/alexander/PycharmProjects/python_practice/CSV/stage3_test.csv') as csv_in:
+    word_cnt = c.Counter()
     csv_reader = csv.DictReader(csv_in)
     for col in csv_reader:
         csv_words = col['Title'].split(" ") + col['Description'].split(" ")
         for i in csv_words:
-            words.append(i)
-    letter_cnt = c.Counter(words)
-    print(f'Двадцать самых частых слов: {letter_cnt.most_common()[:20]}')
-    print(f'Двадцать самых редких слов: {letter_cnt.most_common()[:-21:-1]}')
+            word_cnt[i] += 1
+
+    print(f'Двадцать самых частотных слов: {word_cnt.most_common()[:20]}')
+    print(f'Двадцать самых редких слов: {word_cnt.most_common()[:-21:-1]}')

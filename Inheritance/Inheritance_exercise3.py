@@ -1,5 +1,6 @@
 class Employee:
-    name = 'unknown'
+    def __init__(self, n):
+        self.name = n
 
     def works(self):
         print(f'{self.name} works in Tesla')
@@ -19,8 +20,8 @@ class Executive:
         self.position = 'Executive'
         self.name = n
 
-    def info(self, Director):
-        print(f'{self.position} {self.name} is supervised by {Director.position} {Director.name}')
+    def info(self, obj):
+        print(f'{self.position} {self.name} is supervised by {obj.position} {obj.name}')
 
 
 class Manager:
@@ -28,8 +29,8 @@ class Manager:
         self.position = 'Manager'
         self.name = n
 
-    def info(self, Executive):
-        print(f'{self.position} {self.name} is supervised by {Executive.position} {Executive.name}')
+    def info(self, obj):
+        print(f'{self.position} {self.name} is supervised by {obj.position} {obj.name}')
 
 
 class Employer:
@@ -37,8 +38,8 @@ class Employer:
         self.position = 'Employer'
         self.name = n
 
-    def info(self, Manager):
-        print(f'{self.position} {self.name} is supervised by {Manager.position} {Manager.name}')
+    def info(self, obj):
+        print(f'{self.position} {self.name} is supervised by {obj.position} {obj.name}')
 
 
 director1 = Director("Elon")

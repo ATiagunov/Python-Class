@@ -1,47 +1,23 @@
-class A:
-    count = 0
-
+class Phone:
     def __init__(self):
-        A.count += 1
+        self.username = "Alex"
+        self._number = 89001234567
+        self.__how_many_times_turned_on = 0   # private variable
 
-    def __del__(self):
-        A.count -= 1
+    def call(self):                  # public method
+        print( "Ring-ring!" )
 
-class B:
-    _count = 0
+    def change_num(self, new):        # protected method
+        self._number = new
 
-    def __init__(self):
-        B._count += 1
+    def __turn_on(self):             # private method
+        self.__how_many_times_turned_on += 1
+        print( "Times was turned on: ", self.__how_many_times_turned_on )
 
-    def __del__(self):
-        B._count -= 1
-class C:
-    __count = 0
+my_phone = Phone()
 
-    def __init__(self):
-        C.__count += 1
+my_phone.call()
+my_phone.change_num(123)
+print("new number is", my_phone._number)
+print( "The username is ", my_phone.username )
 
-    def __del__(self):
-        C.__count -= 1
-
-
-
-a = A()
-b = A()
-print(A.count)  # выведет 2
-del a
-print(A.count)  # выведет 1
-A.count -= 1
-# будет выведен 0, хотя остался объект b
-print(A.count)
-c = B()
-d = B()
-print(B._count)  # выведет 2
-del c
-print(B._count)  # выведет 1
-B._count -= 1
-# будет выведен 0, хотя остался объект b
-print(B._count)
-e = C()
-f = C()
-print(C.__count)  # выведет AttributeError
