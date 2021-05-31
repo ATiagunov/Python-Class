@@ -1,63 +1,61 @@
 import xml.etree.ElementTree as etree
+import re
 
 
 class Corpus:
 
     def __init__(self):
-        self._sentences = []
+        self.sentences = []
 
     def load(self, path_to_corpus):
-        global root
         tree = etree.parse(path_to_corpus)
         root = tree.getroot()
         for text in root.iter('source'):
-            self._sentences.append(text.text + "\n")
+            self.sentences.append(text.text + "\n")
 
     def print_i_sentence(self, i):
-        print(self._sentences[i])
+        print(self.sentences[i])
 
 
 class Sentence:
-
     def __init__(self):
-        self._strings = []
-        self._words = []
+        self._wordforms = []
+        self._sentences = []
+        self.bag_of_words = []
 
-    def pick_sentence(self, num):
-        for sentence in root.iter('sentence'):
-            if int(sentence.attrib['id']) == num:
-                text = sentence.find('source')
-                self._strings.append(text.text)
-                tokens = sentence.find('tokens')
-                for token in tokens:
-                    word = token.attrib['text']
-                    self._words.append(word)
+    def iterate_corpus(self, corpus):
+        for sentence in corpus.sentences:
+            self._sentences.append(sentence)
+            words = []
+            res = re.findall(r'\w+', sentence)
+            for word in res:
+                self.bag_of_words.append(word)
+                words.append(word)
+            self._wordforms.append(words)
 
-    def retrieve_sentence(self):
-        if not self._strings or not self._words:
-            print("Предложение под этим номером не существует")
-        else:
-            print(self._strings)
-            print(self._words)
+    def retrieve_words_of_i_sentence(self, i):
+        print(self._sentences[i])
+        print(self._wordforms[i])
 
-    def print_i_word(self, i):
-        if not self._words:
-            print("Предложение под этим номером не существует")
-        else:
-            print(self._words[i])
+    def retrieve_j_word_of_i_sentence(self, i, j):
+        print('\n' + self._wordforms[i][j])
+
+    def retrieve_i_word_from_all(self, i):
+        print('\n' + self.bag_of_words[i])
 
 
 class Wordform:
 
-    def __init__(self):
+    def __init__(self, obj, i):
         self._grammems = []
-        self._word_strings = []
+        self._wordform = obj.bag_of_words[i]
 
-    def pick_word(self, num):
+    def iterate_grammems(self):
+        tree = etree.parse('/home/alexander/PycharmProjects/python_practice/XML/annot.opcorpora.no_ambig.xml')
+        root = tree.getroot()
         for token in root.iter('token'):
-            if int(token.attrib['id']) == num:
-                text = token.attrib['text']
-                self._word_strings.append(text)
+            text = token.get('text')
+            if self._wordform == text:
                 vs = token.findall('tfr')
                 for v in vs:
                     ls = v.find('v')
@@ -65,39 +63,30 @@ class Wordform:
                         gs = l.findall('g')
                         for g in gs:
                             self._grammems.append(g.attrib['v'])
+                    return
 
-    def retrieve_word(self):
-        if not self._grammems or not self._word_strings:
-            print("Слово под этим номером не существует")
-        else:
-            print(self._word_strings)
-            print(self._grammems)
+    def retrieve_grammems_of_the_word(self):
+        print(f'\n {self._wordform}: {self._grammems}')
 
-    def print_i_grammem(self, i):
-        if not self._grammems:
-            print("Граммем для этого слова не существует")
-        else:
-            print(self._grammems[i])
+    def retrieve_i_grammem(self, i):
+        print('\n' + self._grammems[i])
+
 
 
 c = Corpus()
 c.load('/home/alexander/PycharmProjects/python_practice/XML/annot.opcorpora.no_ambig.xml')
-c.print_i_sentence(2)
+c.print_i_sentence(3)
 
 s3 = Sentence()
-s3.pick_sentence(3)
-s3.retrieve_sentence()
+s3.iterate_corpus(c)
+s3.retrieve_words_of_i_sentence(3)
+s3.retrieve_j_word_of_i_sentence(3, 2)
+s3.retrieve_i_word_from_all(0)
 
-s5 = Sentence()
-s5.pick_sentence(5)
-s5.retrieve_sentence()
+w3 = Wordform(s3, 3)
+w3.iterate_grammems()
+w3.retrieve_grammems_of_the_word()
+w3.retrieve_i_grammem(0)
 
-w3 = Wordform()
-w3.pick_word(3)
-w3.retrieve_word()
-
-w2 = Wordform()
-w2.pick_word(2)
-w2.retrieve_word()
-w2.print_i_grammem(0)
-
+#Исправил, исключил из списка слов пунктуацию. Только не совсем понимаю, что писать в тестах.
+#Например, для нахождения граммем i-го слова у меня получится тот же самый код, что и в классе.

@@ -1,7 +1,6 @@
 class Figure:
-    color = 'white'
-    #делаю color без конструктора, чтобы избежать переопределения __init__ у дочерних классов
-    #если делать с конструктором, то использовать функцию super?
+    def __init__(self):
+        self.color = 'white'
 
     def paint(self, col):
         self.color = col
@@ -12,6 +11,7 @@ class Figure:
 
 class Oval(Figure):
     def __init__(self, l, w):
+        super().__init__()
         self.name = 'Oval'
         self.long = l
         self.width = w
@@ -22,6 +22,7 @@ class Oval(Figure):
 
 class Square(Figure):
     def __init__(self, l, w):
+        super().__init__()
         self.name = 'Square'
         self.long = l
         self.width = w
